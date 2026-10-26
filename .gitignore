@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+insightpilot_env/
+
+# Credentials and secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+*.key
+
+# IDE and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Backups and temporary files
+*_backup*.py
+*.bak
+*.tmp
+*.log
+
+# Local test CSV files
+data/insightpilot_*_test.csv
+
+# Generated outputs
+output/
+outputs/
+
+# Large local datasets
+data/online_retail_raw.csv
+data/online_retail_prepared.csv
+
+# Original retail source workbook
+data/online+retail/
+
+# Local source-code backups
+*.backup
+*.py.backup
