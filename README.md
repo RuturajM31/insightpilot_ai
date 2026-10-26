@@ -19,11 +19,12 @@ Designed & developed by **Ruturaj** · AI Applications Capstone · **v1.2**
 [![Architecture](https://img.shields.io/badge/architecture-analyst%20%E2%86%92%20insights%20%E2%86%92%20QA-2563EB)](#multi-agent-copilot-how-it-works)
 [![License](https://img.shields.io/badge/license-not%20specified-lightgrey)](#license-and-data-rights)
 
-**[Run locally](#quick-start--run-the-application)** · **[See the architecture](#system-architecture)** · **[Explore features](#what-you-can-do)** · **[View testing](#testing-and-verification)** · **[Deploy](#deployment-guide)**
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Launch%20InsightPilot%20AI-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://insightpilot-ai-ruturaj.streamlit.app/)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-View%20Source-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/RuturajM31/insightpilot_ai)
 
-> **Live demo:** Not published yet. After deployment, add your Streamlit Community Cloud URL here.  
-> **GitHub repository:** Add the public repository URL after the first push.  
-> **Local application:** [http://localhost:8501](http://localhost:8501) — accessible only while you run it on your own computer.
+**[🚀 Launch the live app](https://insightpilot-ai-ruturaj.streamlit.app/)** · **[💻 View source on GitHub](https://github.com/RuturajM31/insightpilot_ai)** · **[Run locally](#quick-start--run-the-application)** · **[Architecture](#system-architecture)** · **[Testing](#testing-and-verification)**
+
+**Public deployment:** Streamlit Community Cloud · **Cloud AI mode:** evidence-grounded Python answers (no hosted Ollama inference) · **Local AI mode:** optional Ollama / Llama 3.2
 
 </div>
 
@@ -90,25 +91,23 @@ The core design principle is **compute first, explain second, validate before di
 
 **A generic CSV upload offers three sections:** Visual explorer, Data preview, and Data quality.
 
-### Screenshots and demo video
+### Application screenshots
 
-Visual assets can be added once final captures are saved. Recommended files:
+These captures are taken from the running application, including the deployed Streamlit version. The screenshots are illustrative: KPI values reflect the **USA filter** shown in the capture, not the full worldwide dataset.
 
-```text
-assets/
-  dashboard.png
-  ai-copilot.png
-  csv-explorer.png
-  walkthrough.mp4   # optional; a hosted video link is often better
-```
+**Executive dashboard — performance KPIs and country/date filters**
 
-To display a screenshot in this README after adding it to the repository:
+![InsightPilot AI live dashboard with retail KPIs and USA country filter](assets/dashboard.png)
 
-```markdown
-![InsightPilot AI executive dashboard](assets/dashboard.png)
-```
+**Copilot — verified sales answer with transparent fallback**
 
-For a presentation, capture **one full dashboard view**, **one Copilot answer with its evidence/QA trace**, and **one generic CSV exploration view**. These are suggested assets; they are not claimed to be present in the repository yet.
+![InsightPilot AI Copilot showing verified business finding and rules-only engine](assets/ai-copilot.png)
+
+**General CSV explorer — data quality and descriptive analytics**
+
+![InsightPilot AI generic CSV explorer showing numerical and category charts](assets/csv-explorer.png)
+
+> The images are static examples. Use the [live demo](https://insightpilot-ai-ruturaj.streamlit.app/) to interact with filters, charts, and supported business questions. The online demo uses verified Python analytics; local LLM-generated interpretations are available only with an accessible Ollama runtime.
 
 ---
 
@@ -310,12 +309,8 @@ InsightPilot_AI/
 ├── README.md                      # Portfolio and developer documentation
 ├── requirements.txt               # Python package requirements
 ├── .gitignore                     # Local, transient and sensitive-file exclusions
-├── prepare_cloud_demo.py          # Optional lossless demo compression helper
-├── .streamlit/
-│   └── config.toml                # Optional visual configuration
 ├── data/
-│   ├── online_retail_prepared.csv  # Local prepared retail data (normally excluded)
-│   └── online_retail_prepared.csv.gz # Optional, publish only if permitted
+│   └── online_retail_prepared.csv.gz # Compressed retail demo data (committed)
 ├── src/
 │   ├── data_cleaning.py           # Transaction cleaning / business classification
 │   ├── csv_analyzer.py            # CSV analytical utilities
@@ -329,10 +324,14 @@ InsightPilot_AI/
 │       ├── insights_agent.py
 │       ├── qa_agent.py
 │       └── agent_workflow.py
+├── assets/                         # Application screenshots
+│   ├── dashboard.png
+│   ├── ai-copilot.png
+│   └── csv-explorer.png
 └── tests/                          # Pytest suite and QA regression tests
 ```
 
-The tree highlights important source files; it is **not** an assertion that every optional deployment artifact is already committed. The original prepared dataset and any private local files should be handled under the repository's ignore and data-rights policies.
+The tree highlights the released source files and accompanying screenshot assets. Original uncompressed CSVs, local source workbooks, caches, and temporary backups are excluded from Git. The screenshot assets are included with this documentation update.
 
 ---
 
@@ -349,7 +348,7 @@ flowchart LR
     E --> F[6. Separate Analyst, Insights and QA]
     F --> G[7. Regression tests and user QA]
     G --> H[8. CSV explorer and UI polish]
-    H --> I[9. GitHub and cloud deployment preparation]
+    H --> I[9. GitHub publication and Streamlit deployment]
 ```
 
 **1. Frame the analytical questions.** The initial objective was to answer practical business-performance questions while clearly defining how each metric was calculated.
@@ -368,7 +367,7 @@ flowchart LR
 
 **8. Expand beyond a single dataset.** General CSV exploration was added with data-quality metrics, chart defaults and graceful handling of empty uploads.
 
-**9. Prepare for publication.** Git initialization, ignore rules, requirements review and deployment planning support a reproducible portfolio release. **Actual public deployment remains to be completed and verified.**
+**9. Prepare for publication.** Git initialization, ignore rules, requirements review and deployment planning support a reproducible portfolio release. **The application has since been published to GitHub and deployed to Streamlit Community Cloud.**
 
 ---
 
@@ -399,7 +398,8 @@ python -m pytest -q
 | Generic six-row CSV upload | **6 rows, 5 columns, 0 missing cells, 0 exact duplicates** |
 | Generic chart defaults | `Revenue` and `Category` selected after v1.2 UI update |
 | Header-only CSV | Friendly validation error rather than a Python traceback |
-| Public cloud build / public LLM inference | **Not yet verified** |
+| Public Streamlit deployment | **Verified from live-application screenshots:** dataset, filters, KPI cards, supported Copilot question and QA/rules fallback |
+| Cloud LLM inference | **Not available**: local Ollama is not accessible from the hosted app |
 
 **Reproducibility note:** The reported tests cover the local project state at the time they were run. Passing tests do not substitute for a deployment smoke test, and safeguards are limited to the behaviors they actually validate.
 
@@ -432,13 +432,19 @@ Expected health indicators: **6 records · 5 columns · 0 missing cells · 0 exa
 
 ### Prepare the full demo dataset for Streamlit Cloud
 
-For an existing `data/online_retail_prepared.csv`, the optional helper can create a losslessly compressed copy:
+For an existing `data/online_retail_prepared.csv`, Pandas can create a compressed copy:
 
 ```powershell
-python prepare_cloud_demo.py
+python -c "import pandas as pd; d=pd.read_csv('data/online_retail_prepared.csv',low_memory=False); d.to_csv('data/online_retail_prepared.csv.gz',index=False,compression='gzip')"
 ```
 
-It should create `data/online_retail_prepared.csv.gz`. The application looks for the compressed version first, followed by the uncompressed version. Verify the resulting file size and repository policies before committing. This is **not** a sampled replacement: compression is intended to preserve all records.
+The project already publishes `data/online_retail_prepared.csv.gz`, verified at **541,909 rows, 12 columns, approximately 9.24 MB**. The app prefers `.csv.gz` and falls back to the uncompressed local CSV. Compression does not sample or intentionally remove records.
+
+### Current live deployment
+
+**[Open InsightPilot AI](https://insightpilot-ai-ruturaj.streamlit.app/)** · **[View the GitHub repository](https://github.com/RuturajM31/insightpilot_ai)**
+
+The deployed dashboard has been checked with the compressed retail dataset and a supported USA-filtered Copilot question. The hosted interpretation status is **`Engine: verified_rules · QA: fallback`**, which means Python verified the answer but did not generate a hosted LLM explanation. The local Ollama toggle is currently visible in the deployed interface; users should leave it off in the cloud environment.
 
 ### Deploy with Streamlit Community Cloud
 
@@ -454,13 +460,13 @@ It should create `data/online_retail_prepared.csv.gz`. The application looks for
 ### Deployment checklist
 
 - [ ] Data redistribution rights reviewed and appropriate source attribution included
-- [ ] Compressed demo file present and allowed on GitHub (if retail demo is enabled)
-- [ ] No tokens, secrets, personal backups or local environments committed
-- [ ] Clean installation and test run completed
-- [ ] Streamlit public URL tested on a second device/browser
-- [ ] Cloud mode clearly identifies the available AI capabilities
-- [ ] Screenshots added to the repository
-- [ ] GitHub and live-demo links added at the top of this README
+- [x] Compressed demo file included on GitHub (redistribution rights must still be independently reviewed)
+- [x] Git preview excluded local datasets, source workbooks and source-code backups
+- [x] Local automated regression suite passed (76 tests)
+- [ ] Anonymous/incognito access independently confirmed
+- [x] Cloud answer identifies `verified_rules` and `fallback` (UI wording can be improved)
+- [x] Screenshots supplied with this documentation release
+- [x] GitHub and live-demo links included in this README
 
 ---
 
