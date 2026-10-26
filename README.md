@@ -534,3 +534,4 @@ Python · Pandas · Plotly · Streamlit · Ollama · Modular AI Workflow
 *Portfolio project · AI Applications · October 2026*
 
 </div>
+
